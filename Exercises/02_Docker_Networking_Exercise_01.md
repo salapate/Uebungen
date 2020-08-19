@@ -1,11 +1,8 @@
-# Assignment: CLI App Testing
+# Assignment: DNS Round Robin Test
 ***
-Imagine yourself a Systemadministrator who gets a ticket to check the versions of curl installed on a CentOS 7 and Ubuntu 14.04. The commads you may need to accomplish this task,  you will find below.
+In this assignment you will use multiple created networks to respond to one DNS address. 
 
-* Use different Linux distro containers to check ```curl``` cli tool version
-* Use two different terminal windows to start bash in both ```centos:7``` and ```ubuntu:14.04```, using ```-it```
-* Learn the ```docker container run —rm``` option so you can save cleanup
-* Ensure ```curl``` is installed and on latest version for that distro
-* ubuntu: ```apt-get update && apt-get install curl```
-* centos: ```yum update curl```
-* Check ```curl --version```
+1. Create two Elastic Search Containers from the Image ```elasticsearch:2```
+2. Make sure when creating the images to use the option ```–network-alias search``` to give the containers an additional DNS name to respond to
+3. Run a container from an alpine image with the command ```nslookup``` to verify the ip addresses that respond to the alias ```search.network```
+4. Run a container from a centos image with the command ```curl –s search:9200``` on the msi network and monitor whether the output changes (check "name", Elasticsearch names itsself differently whenever a container is started) everytime you rerun the container.  
